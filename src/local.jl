@@ -142,7 +142,7 @@ function localzone()
         # Alternative approaches:
         # - Call .NET via Powershell: `powershell -Command "[TimeZoneInfo]::Local.Id"`
         # - Read the Windows registry
-        win_name = @mock read(`tzutil /g`, String)
+        win_name = @mock read(`powershell -Command "[TimeZoneInfo]::Local.Id"`, String)
 
         if haskey(WINDOWS_TRANSLATION, win_name)
             return TimeZone(WINDOWS_TRANSLATION[win_name], mask)
